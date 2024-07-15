@@ -1,16 +1,57 @@
 ---
+import BaseLayout from '@layouts/BaseLayout.astro'
+import Hero from '@components/Hero.astro'
+import Brailler from '@components/Brailler.svelte'
 
+const title = 'Brailler'
+const description = 'Emulation of a mechanical brailler using keyboard events'
+const subtitle = 'Did you ever want to try out a mechanical braille writer?'
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<BaseLayout {title} {description}>
+  <Hero size="fullheight">
+    <div class="container" slot="head">
+      <h1 class="title is-spaced">{title}</h1>
+      <p class="subtitle">{subtitle}</p>
+      <details class="content">
+        <summary class="title is-4">How to use?</summary>
+        <ul>
+          <li>
+            Decide which keys on your keyboard you want to associate with which Braille dot. Please use character keys,
+            no modifier, tab, arrow etc.
+          </li>
+          <li>Map your keys with the dots in the settings aria by pressing the key in the respective dot field.</li>
+          <li>Enter text in the text input by pressing the mapped keys simultaniously.</li>
+        </ul>
+      </details>
+    </div>
+    <div class="container">
+      <Brailler client:load />
+    </div>
+    <nav slot="foot" class="level">
+      <div class="level-item">
+        <a id="attribution" class="button is-link is-small" href="https://infolektuell.de/">ⅈ𝕟𝕗𝕠lektuell</a>
+      </div>
+    </nav>
+  </Hero>
+</BaseLayout>
+<style>
+  details > summary {
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  details > p {
+    border-radius: 0 0 10px 10px;
+    background-color: #ddd;
+  }
+
+  details[open] > summary {
+    background-color: #ccf;
+  }
+  #attribution {
+    font-family: var(--bulma-family-secondary);
+  }
+</style>
