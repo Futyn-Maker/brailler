@@ -14,32 +14,35 @@ let value: string
 </script>
 
 <section class="box" aria-label="Keyboard settings">
-  <div class="columns">
-    {#each dotFields as dot}
-      <div class="column">
-        <div class="field">
-          <label class="label" for="{'dot' + dot + 'input'}"
-            ><span class="braille">{String.fromCharCode(10240 + Brailler.BrailleDots[dot])}</span></label
-          >
-          <div class="control">
-            <input
-              class="input is-small"
-              type="text"
-              size="1"
-              minlength="1"
-              maxlength="1"
-              name="{'dot' + dot}"
-              id="{'dot' + dot + 'input'}"
-              on:keyup="{(e) => {
-                handleKeyup(e, dot)
-              }}"
-              value="{keys[dot]}"
-            />
+  <details>
+    <summary class="title is-4">Keyboard Settings</summary>
+    <div class="columns">
+      {#each dotFields as dot}
+        <div class="column">
+          <div class="field">
+            <label class="label" for="{'dot' + dot + 'input'}">
+              <span class="braille">{String.fromCharCode(10240 + Brailler.BrailleDots[dot])}</span>
+            </label>
+            <div class="control">
+              <input
+                class="input is-small"
+                type="text"
+                size="1"
+                minlength="1"
+                maxlength="1"
+                name="{'dot' + dot}"
+                id="{'dot' + dot + 'input'}"
+                on:keyup="{(e) => {
+                  handleKeyup(e, dot)
+                }}"
+                value="{keys[dot]}"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    {/each}
-  </div>
+      {/each}
+    </div>
+  </details>
 </section>
 <section class="box" aria-label="Text input">
   <div class="field">
