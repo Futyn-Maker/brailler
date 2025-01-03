@@ -1,6 +1,6 @@
 <script lang="ts">
 import { type BrailleKeys, braille, isNoChar, Brailler } from './braille'
-let keys: BrailleKeys = [' ', '4', '3', '2', '5', '6', '7', '1', '8']
+let keys: BrailleKeys = [' ', 'f', 'd', 's', 'j', 'k', 'l', 'a', ';']
 const dotFields = [7, 3, 2, 1, 0, 4, 5, 6, 8]
 const handleKeyup = (e: KeyboardEvent, index: number) => {
   if (isNoChar(e)) {
